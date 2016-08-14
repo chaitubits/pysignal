@@ -17,39 +17,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-"""
-n = np.linspace(0,400, 800)
-f = 100
-fs = 16000
+
+n = np.linspace(0, 20, 21)
+f = 100.0
+fs = 1000
 y = np.sin(2* np.pi * f * 1/fs * n)
-plt.figure(1)
-plt.subplot(211) 
+
+figure01 = plt.subplot(211) 
 plt.plot(n, y)
 plt.xlabel('number of samples(n)')
 plt.ylabel('amplitude')
-"""
+
 fs = 1000
 f = 100.0
 time_period = 1/f
 time = time_period*2
 
 t = np.linspace(0, time, 500, endpoint=True)
-print t[1:10]
+#print t[1:10]
 y1 = np.sin(2* np.pi * f * t )
-print y1[1:10]
-#plt.subplot(212)
-figure01 = plt.figure(figsize=(10,4))
-axes1 = figure01.add_axes([0.1, 0.1, 0.8, 0.8])
+#print y1[1:10]
+axes1 = plt.subplot(212)
+#figure01 = plt.figure(figsize=(10,4))
+#axes1 = figure01.add_axes([0.1, 0.1, 0.8, 0.8])
 axes1.set_ylim([-1, 1])
 axes1.set_xlim([0, np.max(t)])
-axes1.set_xticks(2*np.pi*f* np.arange(0, 41, 5)*1e-3)
-axes1.set_xticklabels(np.arange(0, 41, 5), fontsize=14)
+print np.max(t)
+axes1.set_xticks(np.linspace(0, np.max(t), 7, endpoint=True))
+axes1.plot(t,y1)
+print 2*np.pi*f*np.arange(0, np.max(t), 0.005)
+axes1.set_xticklabels(np.linspace(0, 20, 7), fontsize=14)
 axes1.set_yticks([-1, -0.5, 0, 0.5, 1])
 axes1.set_yticklabels([-1, -0.5, 0, 0.5, 1], fontsize=14)
 
 axes1.set_xlabel("time (ms)", fontsize=18)
 axes1.set_ylabel("amplitude", fontsize=18)
-axes1.plot(t,y1)
 
 plt.show()
 
